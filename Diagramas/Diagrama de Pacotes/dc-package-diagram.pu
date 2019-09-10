@@ -1,0 +1,55 @@
+
+
+@startuml dc-package-diagram
+
+skinparam ArrowThickness 2
+skinparam ArrowColor DarkBlue
+skinparam linetype ortho
+
+package "Donation Manager" {
+
+    package "backend" {
+        package routingControllers {
+
+        }
+        package "services" {
+
+        }
+        package "businessRules" {
+
+        }
+        package models {
+
+        }
+    }
+
+    package "frontend" {
+        package views {
+
+        }
+        package components {
+
+        }
+        package actions {
+
+        }
+        package reducers {
+
+        }
+    }
+
+    package "database" {
+    }
+
+    views ..> components
+
+    reducers ..> actions
+    actions ...> routingControllers
+    services ..> database
+    "businessRules" ..> services
+    routingControllers .> services
+    routingControllers .> "businessRules"
+    models <. services
+    "businessRules" ..> models
+}
+@enduml
