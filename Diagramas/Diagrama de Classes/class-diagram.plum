@@ -17,6 +17,20 @@ class Giver <<entity>>{
     + addDonationIntention(intention : DonationIntention) : void
 }
 
+class DonationIntention <<entity>>{
+    # id: int
+    # description : String
+    + getProductsToBeDonated() : Product[]
+}
+
+class Product <<entity>>{
+    # id : int
+    # name : String
+    # description: String
+}
+
 User -down-|> Giver
+Giver "1" o-- "0..*" DonationIntention
+DonationIntention "0..*" -- "1..*" Product
 
 @enduml
