@@ -1,0 +1,22 @@
+@startuml
+
+class User <<entity>>{
+    # id: int
+    # name : String
+    # cpf : String
+    # rg : String
+    # email : String
+    # dateOfBirth : Date
+    # phone : String
+}
+
+class Giver <<entity>>{
+    + getDonations() : Donation[]
+    + getDonationIntentions() : DonationIntention[]
+    + addDonation(donation : Donation) : void
+    + addDonationIntention(intention : DonationIntention) : void
+}
+
+User -down-|> Giver
+
+@enduml
