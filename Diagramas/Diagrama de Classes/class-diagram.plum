@@ -1,36 +1,54 @@
 @startuml
 
 class User <<entity>>{
-    # id: int
-    # name : String
-    # cpf : String
-    # rg : String
-    # email : String
-    # dateOfBirth : Date
-    # phone : String
+    # id: int;
+    # name : String;
+    # cpf : String;
+    # rg : String;
+    # email : String;
+    # dateOfBirth : Date;
+    # phone : String;
 }
 
 class Giver <<entity>>{
-    + getDonations() : Donation[]
-    + getDonationIntentions() : DonationIntention[]
-    + addDonation(donation : Donation) : void
-    + addDonationIntention(intention : DonationIntention) : void
+    + getDonations() : Donation[];
+    + getDonationIntentions() : DonationIntention[];
+    + addDonation(donation : Donation) : void;
+    + addDonationIntention(intention : DonationIntention) : void;
 }
 
 class DonationIntention <<entity>>{
-    # id: int
-    # description : String
-    + getProductsToBeDonated() : Product[]
+    # id: int;
+    # description : String;
+    # collectFromGiver: boolean;
+    # collectDate: Date;
+}
+
+class Donation <<entity>>{
+    # id: int;
+    # description : String;
+    # date: Date;
+}
+
+class Address <<entity>>{
+    # id: int;
+    # street: String;
+    # number: String;
+    # destrict: String;
+    # city: String;
+    # country: String;
+    # cep: String;
 }
 
 class Product <<entity>>{
-    # id : int
-    # name : String
-    # description: String
+    # id : int;
+    # name : String;
+    # description: String;
 }
 
 User -down-|> Giver
 Giver "1" o-- "0..*" DonationIntention
-DonationIntention "0..*" -- "1..*" Product
+Giver "1" o-- "0..*" Donation
+User "0..*" -- "0..*" Address
 
 @enduml
